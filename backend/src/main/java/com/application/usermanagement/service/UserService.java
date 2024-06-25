@@ -2,21 +2,27 @@ package com.application.usermanagement.service;
 
 import com.application.usermanagement.dto.UserDTO;
 import com.application.usermanagement.exception.ResourceNotFoundException;
+import com.application.usermanagement.model.Department;
 import com.application.usermanagement.model.User;
+import com.application.usermanagement.repository.DepartmentRepository;
 import com.application.usermanagement.repository.UserRepository;
 import com.application.usermanagement.util.Mapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class UserService {
     private final UserRepository userRepository;
+    private final DepartmentRepository departmentRepository;
     private final Mapper mapper = new Mapper();
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, DepartmentRepository departmentRepository) {
         this.userRepository = userRepository;
+        this.departmentRepository = departmentRepository;
     }
 
     public List<UserDTO> getAllUsers() {
@@ -34,15 +40,20 @@ public class UserService {
 
     public UserDTO createUser(UserDTO userDTO) {
         User user = mapper.map(userDTO, User.class);
+        Department department = departmentRepository.findById(userDTO.getDepartment().getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Department not found"));
+        user.setDepartment(department);
         return mapper.map(userRepository.save(user), UserDTO.class);
     }
 
     public UserDTO updateUser(Long id, UserDTO userDTO) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found."));
+        Department department = departmentRepository.findById(userDTO.getDepartment().getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Department not found"));
+        user.setDepartment(department);
         user.setName(userDTO.getName());
         user.setEmail(userDTO.getEmail());
-        user.setDepartment(user.getDepartment());
         return mapper.map(userRepository.save(user), UserDTO.class);
     }
 
