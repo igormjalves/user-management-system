@@ -1,9 +1,10 @@
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { UserFormComponent } from './user/user-form/user-form.component';
+import { NgModule } from '@angular/core';
 
-export const routes: Routes = [
+const routes: Routes = [
   { path: 'users',
     children: [
       {
@@ -26,3 +27,9 @@ export const routes: Routes = [
   },
   { path: '', redirectTo: 'users', pathMatch: 'full' }
 ];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule {}
