@@ -22,7 +22,7 @@ The project is built using a layered architecture, separating concerns into diff
 - **Backend**:
   - Spring Boot
   - Spring Data JPA
-  - H2 Database
+  - Postgres Database
 
 - **Testing**:
   - JUnit
