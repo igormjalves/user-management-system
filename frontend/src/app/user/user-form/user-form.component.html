@@ -1,1 +1,46 @@
-<p>user-form works!</p>
+<h2 mat-dialog-title>{{ isEditMode ? 'Modificar Usuário' : 'Adicionar Usuário' }}</h2>
+<div mat-dialog-content>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="name" placeholder="Insira um nome" required>
+      <mat-error *ngIf="name?.hasError('required')">Nome é obrigatório.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" placeholder="Insira um email válido" required>
+      <mat-error *ngIf="email?.hasError('required')">Email é obrigatório.</mat-error>
+      <mat-error *ngIf="email?.hasError('email')">Formato de email inválido.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Departamento</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="department"
+          [matAutocomplete]="auto"
+          placeholder="Insira um Departamento"
+          required
+          (input)="filterDepartments($event)"
+        />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let department of filteredDepartments"
+            [value]="department.name"
+          >
+            {{ department.name }}
+          </mat-option>
+          <mat-option *ngIf="filteredDepartments.length === 0" disabled>
+            Nenhum resultado encontrado (Adicionar Novo Departamento)
+          </mat-option>
+        </mat-autocomplete>
+        <mat-error *ngIf="department?.hasError('required')">Departamento é obrigatório.</mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-button (click)="onClose()">Cancelar</button>
+  <button mat-button color="primary" type="submit" (click)="onSubmit()">{{ isEditMode ? 'Salvar' : 'Adicionar' }}</button>
+</div>

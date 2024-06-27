@@ -6,6 +6,6 @@ export interface User {
 }
 
 export interface Department {
-  id: number,
+  id?: number,
   name: string
 }

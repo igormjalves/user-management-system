@@ -40,8 +40,14 @@ public class UserService {
 
     public UserDTO createUser(UserDTO userDTO) {
         User user = mapper.map(userDTO, User.class);
-        Department department = departmentRepository.findById(userDTO.getDepartment().getId())
-                .orElseThrow(() -> new ResourceNotFoundException("Department not found"));
+        Department department;
+        if(userDTO.getDepartment().getId() != null) {
+            department = departmentRepository.findById(userDTO.getDepartment().getId())
+                    .orElse(departmentRepository.save(user.getDepartment()));
+        } else {
+            department = departmentRepository.findByName(userDTO.getDepartment().getName())
+                    .orElse(departmentRepository.save(user.getDepartment()));
+        }
         user.setDepartment(department);
         return mapper.map(userRepository.save(user), UserDTO.class);
     }
@@ -49,8 +55,14 @@ public class UserService {
     public UserDTO updateUser(Long id, UserDTO userDTO) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found."));
-        Department department = departmentRepository.findById(userDTO.getDepartment().getId())
-                .orElseThrow(() -> new ResourceNotFoundException("Department not found"));
+        Department department;
+        if(userDTO.getDepartment().getId() != null) {
+            department = departmentRepository.findById(userDTO.getDepartment().getId())
+                    .orElse(departmentRepository.save(mapper.map(userDTO, User.class).getDepartment()));
+        } else {
+            department = departmentRepository.findByName(userDTO.getDepartment().getName())
+                    .orElse(departmentRepository.save(mapper.map(userDTO, User.class).getDepartment()));
+        }
         user.setDepartment(department);
         user.setName(userDTO.getName());
         user.setEmail(userDTO.getEmail());
