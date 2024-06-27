@@ -53,7 +53,7 @@ The project is built using a layered architecture, separating concerns into diff
    ```
    mvnw spring-boot:run
    ```
-The backend server will start at http://localhost:8080.
+The backend server will start at `http://localhost:8080`.
 
 ### Frontend Configuration and Setup
 
@@ -78,3 +78,39 @@ The frontend application will be available at `http://localhost:4200`.
    ```
    mvn test
    ```
+
+## Usage
+
+### Accessing the Application
+
+-  **Frontend**: Open a web browser and navigate to `http://localhost:4200`.
+-  **Backend API**: The backend APIs can be accessed via `http://localhost:8080/api/`.
+
+### Key Features
+
+1. **User Management**:
+- List Users
+- Add User
+- Update User
+- Delete User
+
+2. **Department Management**:
+- Assign Department to Users
+- Create New Departments
+
+## Adding a New User
+
+1. Click the "Adicionar" button in the user list toolbar.
+2. Fill out the user details in the dialog that appears.
+3. Select a department from the dropdown or add a new department by typing its name.
+4. Submit the form to create a new user.
+
+## Editing a User
+
+1. Click the "Edit" icon next to the user in the user list.
+2. Modify the user details in the dialog that appears.
+3. Submit the form to update the user information.
+
+## Deleting a User
+1. Click the "Delete" icon next to the user in the user list.
+2. Confirm the deletion in the confirmation dialog.
