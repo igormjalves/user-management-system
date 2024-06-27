@@ -116,4 +116,4 @@ The frontend application will be available at `http://localhost:4200`.
 2. Confirm the deletion in the confirmation dialog.
 
 ## Important Notes
-In `backend/src/main/resources/application.properties` and `backend/src/test/resources/application.properties` define the variables **DATABASE_URL**, **DATABASE_USERNAME**, **DATABASE_PASSWORD**.
+In `backend/src/main/resources/application.properties` and `backend/src/test/resources/application.properties` define the variables **DATABASE_URL**, **DATABASE_USERNAME**, **DATABASE_PASSWORD** allowing a proper connection with the project and test databases.
