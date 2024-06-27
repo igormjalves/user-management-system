@@ -8,7 +8,7 @@ The project is built using a layered architecture, separating concerns into diff
 
 2. **Backend**: Built with Spring Boot, a powerful framework for creating standalone, production-grade Spring-based applications. The backend handles business logic, data access, and serves RESTful APIs to the frontend.
 
-3. **Database**: Uses H2, an in-memory database for development and testing purposes. It provides fast and lightweight database operations, ideal for local development.
+3. **Database**: Uses PostgreSQL, a robust relational database management system. PostgreSQL provides data persistence and scalability for the application.
 
 ## Technologies Used
 
