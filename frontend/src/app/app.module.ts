@@ -23,13 +23,15 @@ import { UserFormComponent } from './user/user-form/user-form.component';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { ConfirmationDialogComponent } from './user/confirmation-dialog/confirmation-dialog.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
-    UserFormComponent
+    UserFormComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     CommonModule,
