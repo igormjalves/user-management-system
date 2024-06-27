@@ -114,3 +114,6 @@ The frontend application will be available at `http://localhost:4200`.
 ## Deleting a User
 1. Click the "Delete" icon next to the user in the user list.
 2. Confirm the deletion in the confirmation dialog.
+
+## Important Notes
+In `backend/src/main/resources/application.properties` and `backend/src/test/resources/application.properties` define the variables **DATABASE_URL**, **DATABASE_USERNAME**, **DATABASE_PASSWORD**.
